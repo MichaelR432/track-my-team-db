@@ -241,4 +241,47 @@ function addRole() {
     });
 }
 
+// Creating function to update a team employee's info
+
+function updateEmpRole(empRole, empId) {
+  let updateRole = connection.query(
+    "UPDATE employee SET role_id = ? WHERE id = ?",
+    [empRole, empId],
+    function (err, role) {
+      if (err) throw err;
+    }
+  );
+  updateEmpRole();
+}
+
+// Function to view team departments
+function viewTeamDepts() {
+    connection.query("SELECT * FROM department", (error, data) => {
+      if (error) throw error;
+      console.table(data);
+      //viewDepartment();
+      trackMyTeam();
+    });
+  }
+
+// Function to view team roles
+function viewTeamRoles() {
+    connection.query("SELECT * FROM role", (error, data) => {
+      if (error) throw error;
+      console.table(data);
+      trackMyTeam();
+    });
+  }
+
+// function to view all team employees
+function viewTeamEmps() {
+    connection.query("SELECT * FROM employee", (error, data) => {
+        if (error) throw error;
+        console.table(data);
+        trackMyTeam();
+      });
+}
+
+const deptId = [];
+
 
