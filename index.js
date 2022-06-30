@@ -241,7 +241,7 @@ function addRole() {
     });
 }
 
-// Creating function to update a team employee's info
+// Creating function to update a team employee's info ** not functional atm
 
 function updateEmpRole(empRole, empId) {
   let updateRole = connection.query(
