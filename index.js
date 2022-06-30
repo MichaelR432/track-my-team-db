@@ -256,32 +256,53 @@ function updateEmpRole(empRole, empId) {
 
 // Function to view team departments
 function viewTeamDepts() {
-    connection.query("SELECT * FROM department", (error, data) => {
-      if (error) throw error;
-      console.table(data);
-      //viewDepartment();
-      trackMyTeam();
-    });
-  }
+  connection.query("SELECT * FROM department", (error, data) => {
+    if (error) throw error;
+    console.table(data);
+    //viewDepartment();
+    trackMyTeam();
+  });
+}
 
 // Function to view team roles
 function viewTeamRoles() {
-    connection.query("SELECT * FROM role", (error, data) => {
-      if (error) throw error;
-      console.table(data);
-      trackMyTeam();
-    });
-  }
+  connection.query("SELECT * FROM role", (error, data) => {
+    if (error) throw error;
+    console.table(data);
+    trackMyTeam();
+  });
+}
 
 // function to view all team employees
 function viewTeamEmps() {
-    connection.query("SELECT * FROM employee", (error, data) => {
-        if (error) throw error;
-        console.table(data);
-        trackMyTeam();
-      });
+  connection.query("SELECT * FROM employee", (error, data) => {
+    if (error) throw error;
+    console.table(data);
+    trackMyTeam();
+  });
 }
 
 const deptId = [];
 
+// modifying query instance to populate child records from departments
 
+function populate() {
+  connection.query("SELECT name FROM department", (error, data) => {
+    if (error) throw error;
+    for (let i = 0; i < data.length; i++) {
+      departments.push(data[i].name);
+    }
+    console.log(departments);
+  });
+  deptId.length = 0;
+  connection.query("SELECT * FROM department", (error, data) => {
+    if (error) throw error;
+    for (let i = 0; i < data.length; i++) {
+      deptId.push(data[i]);
+    }
+    console.log(deptId);
+  });
+};
+
+populate();
+trackMyTeam();
