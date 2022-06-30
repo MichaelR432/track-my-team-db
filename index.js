@@ -98,7 +98,7 @@ function addDepartment() {
         name: "department",
         message: "Add your new department: ",
         validate: (responses) => {
-          if (data) {
+          if (responses) {
             return true;
           } else {
             console.log("Enter your new department name.");
